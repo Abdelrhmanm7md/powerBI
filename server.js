@@ -2,8 +2,6 @@ import * as dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
-import { createServer } from "http";
-import { Server } from "socket.io";
 import cors from "cors";
 import dbConnection from "./database/DBConnection.js";
 import { init } from "./src/modules/index.js";
@@ -14,7 +12,6 @@ import mongoSanitize from "express-mongo-sanitize";
 import hpp from "hpp";
 import helmet from "helmet";
 import xssSanitizer from "./src/utils/middleWare/sanitization.js";
-const httpServer = createServer();
 const io = new Server(httpServer, {
   cors: {
     origin: "*",
@@ -65,5 +62,4 @@ app.use(globalError);
 app.listen(process.env.PORT || 9000, () =>
   console.log(`Server is running on port ${process.env.PORT || 9000}!`)
 );
-// httpServer.listen(8001);
-export const sio = io;
+
